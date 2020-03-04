@@ -45,10 +45,10 @@ tr:nth-child(even) {
  </div>
 </div>
 <br>
-Id: <input type="text" name="Id" id="cusid"  style="margin-left: 53px;" placeholder="Just for Change and Delete"><br><br>
+Id: <input type="number" name="Id" id="cusid"  style="margin-left: 53px;" placeholder="Just for Change and Delete"><br><br>
 First name: <input type="text" name="fname" id="fname"><br><br>
 Last name: <input type="text" name="lname" id=lname><br><br>
-Age: <input type="text" name="age" id="age" style="margin-left: 41px;"><br>
+Age: <input type="number" name="age" id="age" style="margin-left: 41px;"><br>
 
 <button onclick="addRow()"  class="myButton">Add</button>
 <button onclick="ChangeRow()" class="myButton">Change</button>
@@ -59,13 +59,21 @@ Age: <input type="text" name="age" id="age" style="margin-left: 41px;"><br>
 <script type="text/javascript">
 	
 function addRow() 
-{
-	var id = document.getElementById('custable').rows.length;;
+{	
+	var n1 = document.getElementById("custable").rows.length;
+	var i=1;
+	var gathering = 1; 
 	var fname = document.getElementById('fname').value;
 	var lname = document.getElementById('lname').value;
 	var age = document.getElementById('age').value;
 
 	var table = document.getElementsByTagName('table')[0];
+	for(i=1; i<n1;i++){
+ 
+   	var x = document.getElementById("custable").rows[i].cells[0].innerHTML;
+   		
+}
+	var id = parseInt(x) + gathering;
 	var newRow = table.insertRow(table.rows.length);
 	var cel1 = newRow.insertCell(0);
 	var cel2 = newRow.insertCell(1);
@@ -81,15 +89,35 @@ function addRow()
 
 
 function ChangeRow(){
-
+	var n1 = document.getElementById("custable").rows.length;
 	var id = document.getElementById('cusid').value;
+	var i=1;
+	var countRow = 0;
 	var fname = document.getElementById('fname').value;
 	var lname = document.getElementById('lname').value;
 	var age = document.getElementById('age').value;
 
 	var table = document.getElementsByTagName('table')[0];
-	var deleteRow = table.deleteRow(id);
-	var newRow = table.insertRow(id);
+
+		for(i=1; i<n1;i++){
+ 
+
+   	var x = document.getElementById("custable").rows[i].cells[0].innerHTML;
+   	countRow = countRow + 1;
+   	console.log(countRow);
+   	console.log(x);
+   	console.log(id);
+	
+	if (id==x) {
+ 
+	var deleteRow = table.deleteRow(countRow);
+	var newRow = table.insertRow(countRow);
+
+	break;
+}
+
+}
+
 	var cel1 = newRow.insertCell(0);
 	var cel2 = newRow.insertCell(1);
 	var cel3 = newRow.insertCell(2);
@@ -106,10 +134,8 @@ function ChangeRow(){
 function DeleteRow(){
 	var n1 = document.getElementById("custable").rows.length;
 	var i=1;
+	var countRow = 0;
 	var id = document.getElementById('cusid').value;
-	var fname = document.getElementById('fname').value;
-	var lname = document.getElementById('lname').value;
-	var age = document.getElementById('age').value;
 
 	var table = document.getElementsByTagName('table')[0];
 
@@ -117,12 +143,14 @@ function DeleteRow(){
  
 
    	var x = document.getElementById("custable").rows[i].cells[0].innerHTML;
+   	countRow = countRow + 1;
+   	console.log(countRow);
    	console.log(x);
    	console.log(id);
 	
 	if (id==x) {
  
-	var deleteRow = table.deleteRow(id);
+	var deleteRow = table.deleteRow(countRow);
 	break;
 }
 
@@ -130,10 +158,6 @@ function DeleteRow(){
 }
 
 </script>
-
-
-
-
 
 
 <table id="custable" style="width:100%">
