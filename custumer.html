@@ -2,6 +2,9 @@
 <html>
 <head>
 	<title>Custumer</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/css/iziModal.min.css">
 	<link rel="stylesheet" type="text/css" href="main.css">
 
 	<style>
@@ -44,20 +47,64 @@ tr:nth-child(even) {
   </div>
  </div>
 </div>
-<br>
-Id: <input type="number" name="Id" id="cusid"  style="margin-left: 53px;" placeholder="Just for Change and Delete"><br><br>
+<!-- <br>
+ Id: <input type="number" name="Id" id="cusid"  style="margin-left: 53px;" placeholder="Just for Change and Delete"><br><br>
 First name: <input type="text" name="fname" id="fname"><br><br>
 Last name: <input type="text" name="lname" id=lname><br><br>
 Age: <input type="number" name="age" id="age" style="margin-left: 41px;"><br>
 
 <button onclick="addRow()"  class="myButton">Add</button>
 <button onclick="ChangeRow()" class="myButton">Change</button>
-<button onclick="DeleteRow()" class="myButton">Delete</button>
-
+<button onclick="DeleteRow()" class="myButton">Delete</button> -->
+ 
 <p id="demo"></p>
+
+
+<button data-izimodal-open="#modal" data-izimodal-transitionin="fadeInDown" class="myButton">Add</button>
+<div id="modal" class="modal">
+<br>	
+First name: <input type="text" name="fname" id="fname"><br><br>
+Last name: <input type="text" name="lname" id=lname><br><br>
+Age: <input type="number" name="age" id="age" style="margin-left: 41px;"><br>
+<button onclick="addRow()" class="myButton" style="float: right; margin-right: 18px;" >Add</button>
+</div>
+
+<button data-izimodal-open="#modal1" data-izimodal-transitionin="fadeInDown" class="myButton">Change</button>
+<div id="modal1" class="modal">
+<br>	
+Id: <input type="number" name="Id" id="cusid1"  style="margin-left: 53px;" placeholder="Just for Change and Delete"><br><br>
+First name: <input type="text" name="fname" id="fname1"><br><br>
+Last name: <input type="text" name="lname" id=lname1><br><br>
+Age: <input type="number" name="age" id="age1" style="margin-left: 41px;"><br>
+<button onclick="ChangeRow()" class="myButton" style="float: right; margin-right: 18px;" >Change</button>
+</div>
+
+
+<button data-izimodal-open="#modal2" data-izimodal-transitionin="fadeInDown" class="myButton">Delete</button>
+<div id="modal2" class="modal">
+<br>	
+Id: <input type="number" name="Id" id="cusid2"  style="margin-left: 53px;" placeholder="Just for Change and Delete"><br><br>
+<button onclick="DeleteRow()" class="myButton" style="float: right; margin-right: 18px;" >delete</button>
+</div>
+
+ 
 
 <script type="text/javascript">
 	
+$(function () {
+		
+		 $ (".modal").iziModal({
+
+		 	title: "Melumatlari daxil edin",
+		 	radius: 10,
+		 	padding: 10
+
+		 });
+	})
+
+
+
+
 function addRow() 
 {	
 	var n1 = document.getElementById("custable").rows.length;
@@ -90,12 +137,12 @@ function addRow()
 
 function ChangeRow(){
 	var n1 = document.getElementById("custable").rows.length;
-	var id = document.getElementById('cusid').value;
+	var id = document.getElementById('cusid1').value;
 	var i=1;
 	var countRow = 0;
-	var fname = document.getElementById('fname').value;
-	var lname = document.getElementById('lname').value;
-	var age = document.getElementById('age').value;
+	var fname = document.getElementById('fname1').value;
+	var lname = document.getElementById('lname1').value;
+	var age = document.getElementById('age1').value;
 
 	var table = document.getElementsByTagName('table')[0];
 
@@ -135,7 +182,7 @@ function DeleteRow(){
 	var n1 = document.getElementById("custable").rows.length;
 	var i=1;
 	var countRow = 0;
-	var id = document.getElementById('cusid').value;
+	var id = document.getElementById('cusid2').value;
 
 	var table = document.getElementsByTagName('table')[0];
 
