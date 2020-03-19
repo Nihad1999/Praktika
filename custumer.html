@@ -38,7 +38,7 @@
 </div>
 
 
-<button id="ChangeButton" class="myButton" style="visibility: hidden;"  >Change</button>
+<button id="ChangeButton" class="myButton"   >Change</button>
 <div id="modal1"  class="modal1" >
 <br>
 
@@ -53,7 +53,7 @@
 
 
 <!-- <button data-izimodal-open="#modal2" data-izimodal-transitionin="fadeInDown" class="myButton">Delete</button>
- --><button  id="DeleteButton" onclick="AreYouSure()"  class="myButton" style="visibility: hidden;">Delete</button>
+ --><button  id="DeleteButton" onclick="AreYouSure()"  class="myButton" >Delete</button>
 <div id="modal2" class="modal" >
 <br>
 <label>Id:</label>		
@@ -66,13 +66,13 @@
 	<div class="modal-contentes">
 		<div class="dialogtitle">
 		<h4 style="display: inline-block; margin:10px; font-size: 15px; font-weight: 400; font-family: 'Lato',Arial; color: #fff;">Are you sure</h4>
-		<div class="circle"><div onclick="closedialoq()" id="close" class="close" >+</div></div>	
+		<div class="circle"><div onclick="closedialog()" id="close" class="close" >+</div></div>	
 		
 		</div>
 		
 		<div class="surebutton">
 		<button onclick="DeleteRow()">Yes</button>
-		<button onclick="closedialoq()">No</button>	
+		<button onclick="closedialog()">No</button>	
 		</div>
 		
 	</div>
