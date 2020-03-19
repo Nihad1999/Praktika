@@ -79,27 +79,19 @@ function addRow()
 	cel3.innerHTML = lname;
 	cel4.innerHTML = age;
 
-	dataid = [];
-	datafname = [];
-	datalname = [];
-	dataAge = [];
-	
-	for(j=1; j<n1+1; j++){
-		var collectId = document.getElementById("custable").rows[j].cells[0].innerHTML;
-		var collectFname = document.getElementById("custable").rows[j].cells[1].innerHTML;
-		var collectLname = document.getElementById("custable").rows[j].cells[2].innerHTML;
-		var collectAge = document.getElementById("custable").rows[j].cells[3].innerHTML;
 
-		dataid.push(collectId);
-		datafname.push(collectFname);
-		datalname.push(collectLname);
-		dataAge.push(collectAge);
-		localStorage.setItem("Id",   dataid);
-		localStorage.setItem("Fname",   datafname);
-		localStorage.setItem("Lname",   datalname);
-		localStorage.setItem("Age",   dataAge);
-	}
-   
+	tablebase = [];
+
+
+for(i=1; i<table.rows.length; i++){
+    for(j=0; j<table.rows[0].cells.length; j++){
+        tablebase.push(table.rows[i].cells[j].innerHTML);
+        localStorage.setItem("Datatab",   tablebase);
+        }        
+
+}
+
+
 document.getElementsByTagName('tr')[n1].setAttribute("onclick", 'clickme(this)' );
 
 	document.getElementById('fname').value = '';
@@ -154,29 +146,17 @@ if (id.length && fname.length && lname.length && age.length >=1)
 	cel2.innerHTML = fname;
 	cel3.innerHTML = lname;
 	cel4.innerHTML = age;
-
-
-	dataid = [];
-	datafname = [];
-	datalname = [];
-	dataAge = [];
 	
-	for(j=1; j<n1; j++){
-		var collectId = document.getElementById("custable").rows[j].cells[0].innerHTML;
-		var collectFname = document.getElementById("custable").rows[j].cells[1].innerHTML;
-		var collectLname = document.getElementById("custable").rows[j].cells[2].innerHTML;
-		var collectAge = document.getElementById("custable").rows[j].cells[3].innerHTML;
+	tablebase = [];
 
-		dataid.push(collectId);
-		datafname.push(collectFname);
-		datalname.push(collectLname);
-		dataAge.push(collectAge);
-		localStorage.setItem("Id",   dataid);
-		localStorage.setItem("Fname",   datafname);
-		localStorage.setItem("Lname",   datalname);
-		localStorage.setItem("Age",   dataAge);
-	}
 
+for(i=1; i<table.rows.length; i++){
+    for(j=0; j<table.rows[0].cells.length; j++){
+        tablebase.push(table.rows[i].cells[j].innerHTML);
+        localStorage.setItem("Datatab",   tablebase);
+        }        
+
+}
 	document.getElementsByTagName('tr')[countRow].setAttribute("onclick", 'clickme(this)' );
 
 	document.getElementById('fname1').value = '';
@@ -274,7 +254,7 @@ else{
 
 }
 
-function closedialoq(){
+function closedialog(){
 
 	document.getElementById('bg-modal').style.display = 'none';
 }
@@ -285,8 +265,6 @@ function DeleteRow(){
 	var i=1;
 	var countRow = 0;
 	var id = SendId;
-
-	
 
 	var table = document.getElementsByTagName('table')[0];
 
@@ -304,39 +282,23 @@ function DeleteRow(){
 	DeleteButton.style.visibility = "hidden";
 		check = 0;
 
-		if (table.rows.length>1) {
-	dataid = [];
-	datafname = [];
-	datalname = [];
-	dataAge = [];
+	if (table.rows.length>1) {
 
-	for(j=1; j<table.rows.length; j++){
-		var collectId = document.getElementById("custable").rows[j].cells[0].innerHTML;
-		var collectFname = document.getElementById("custable").rows[j].cells[1].innerHTML;
-		var collectLname = document.getElementById("custable").rows[j].cells[2].innerHTML;
-		var collectAge = document.getElementById("custable").rows[j].cells[3].innerHTML;
-
-
-		dataid.push(collectId);
-		datafname.push(collectFname);
-		datalname.push(collectLname);
-		dataAge.push(collectAge);
-		localStorage.setItem("Id",   dataid);
-		localStorage.setItem("Fname",   datafname);
-		localStorage.setItem("Lname",   datalname);
-		localStorage.setItem("Age",   dataAge);
-	}
+		tablebase = [];
+		
+		for(i=1; i<table.rows.length; i++){
+		    for(j=0; j<table.rows[0].cells.length; j++){
+		        tablebase.push(table.rows[i].cells[j].innerHTML);
+		        localStorage.setItem("Datatab",   tablebase);
+		        }        
+		
+		}
 
 	}
 
 	else{
-		dataid = [];
-		datafname = [];
-		datalname = [];
-		dataAge = [];
-
+		tablebase = [];
 		localStorage.clear();
-
 	}
 	break;
 
@@ -344,7 +306,6 @@ function DeleteRow(){
 }
 
 }
-
 
 
 	function myFunction(){
@@ -357,48 +318,54 @@ document.getElementsByTagName('tr')[i].setAttribute("onclick", 'clickme(this)' )
 }
 }
 
+function chunkArray(myArray, chunk_size){
+    var index = 0;
+    var arrayLength = myArray.length;
+    var tempArray = [];
+    
+    for (index = 0; index < arrayLength; index += chunk_size) {
+        myChunk = myArray.slice(index, index+chunk_size);
+        tempArray.push(myChunk);
+    }
 
+    return tempArray;
+}
 
+	var SendTableRow = [];
+	var exportData = [];
 
-	var dataid = [];
-	var datafname = [];
-	var datalname = [];
-	var dataAge = [];
-
+	var tablebase = [];
 
 function ShowData(){
 dataid = [];
 datafname = [];
 datalname = [];
 dataAge = [];
-
+tablebase = [];
 
 var tableid = document.getElementById('custable');
 var i =0;
-dataid.push(localStorage.getItem("Id"));
-dataid = dataid.toString();
-dataid = dataid.split(",");
 
-datafname.push(localStorage.getItem("Fname"));
-datafname = datafname.toString();
-datafname = datafname.split(",");
+tablebase.push(localStorage.getItem("Datatab"));
+tablebase = tablebase.toString();
+tablebase = tablebase.split(",");
 
 
-datalname.push(localStorage.getItem("Lname"));
-datalname = datalname.toString();
-datalname = datalname.split(",");
+var result = chunkArray(tablebase, 4);
+console.log(result.length, result);
 
-dataAge.push(localStorage.getItem("Age"));
-dataAge = dataAge.toString();
-dataAge = dataAge.split(",");
 
-if (localStorage.length >=1) {
-for(i=0; i<tableid.rows.length; i++){
+if (tableid.rows.length >1  ) {
+	console.log(result.length);
+for(i=0; i<result.length; i++){
 	
 var deleterow = tableid.deleteRow(1);
 }
 
-for(i=0; i<datafname.length; i++){
+}
+
+if(localStorage.getItem("Datatab").length>0){
+for(i=0; i<result.length; i++){
 
 var newRow = tableid.insertRow(i+1);
 	var cel1 = newRow.insertCell(0);
@@ -406,22 +373,15 @@ var newRow = tableid.insertRow(i+1);
 	var cel3 = newRow.insertCell(2);
 	var cel4 = newRow.insertCell(3);
 
-	cel1.innerHTML = dataid[i];
-	cel2.innerHTML = datafname[i];
-	cel3.innerHTML = datalname[i];
-	cel4.innerHTML = dataAge[i];
-
+	cel1.innerHTML = result[i][0];
+	cel2.innerHTML = result[i][1];
+	cel3.innerHTML = result[i][2];
+	cel4.innerHTML = result[i][3];
+	}
 	}
 
 }
-else{
-	for(i=0; i<tableid.rows.length; i++){
-	
-var deleterow = tableid.deleteRow(1);
-}
 
-}
 
-}
 
 
