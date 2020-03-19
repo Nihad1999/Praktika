@@ -164,8 +164,10 @@ for(i=1; i<table.rows.length; i++){
 	document.getElementById('age1').value = '';
 	SendId = 0;
 	$("#modal1").iziModal('close');
-		ChangeButton.style.visibility = "hidden";
-		DeleteButton.style.visibility = "hidden";
+	ChangeButton.disabled = true;
+	ChangeButton.setAttribute("class", "myButtondisabled");
+	DeleteButton.disabled = true;
+	DeleteButton.setAttribute("class", "myButtondisabled");
 		check = 0;
 
 }
@@ -191,8 +193,11 @@ function clickme(row){
 	for (i=1; i<rowstable; i++){
 
 		table.getElementsByTagName('tr')[i].classList.remove("main");
-		ChangeButton.style.visibility = "hidden";
-		DeleteButton.style.visibility = "hidden";
+		// ChangeButton.style.visibility = "hidden";
+		ChangeButton.disabled = true;
+		ChangeButton.setAttribute("class", "myButtondisabled");
+		DeleteButton.disabled = true;
+		DeleteButton.setAttribute("class", "myButtondisabled");
 		SendId = 0;
 
 	}
@@ -203,16 +208,21 @@ var tabtr = row.rowIndex;
 
 if (check == tabtr) {
 table.getElementsByTagName('tr')[tabtr].classList.remove("main");
-ChangeButton.style.visibility = "hidden";
-DeleteButton.style.visibility = "hidden";
+// ChangeButton.style.visibility = "hidden";
+ChangeButton.disabled = true;
+ChangeButton.setAttribute("class", "myButtondisabled");
+DeleteButton.disabled = true;
+DeleteButton.setAttribute("class", "myButtondisabled");
 SendId = 0;
 }
 
 else{
 
 table.getElementsByTagName('tr')[tabtr].classList.add("main");
-ChangeButton.style.visibility = "visible";
-DeleteButton.style.visibility = "visible";
+ChangeButton.disabled = false;
+ChangeButton.setAttribute("class", "myButton");
+DeleteButton.disabled = false;
+DeleteButton.setAttribute("class", "myButton");
 
 
 var Idtab = document.getElementById("custable").rows[tabtr].cells[0].innerHTML;
@@ -278,8 +288,11 @@ function DeleteRow(){
 	var deleteRow = table.deleteRow(countRow);
 	document.getElementById('bg-modal').style.display = 'none';
 	SendId = 0;
-	ChangeButton.style.visibility = "hidden";
-	DeleteButton.style.visibility = "hidden";
+	
+	ChangeButton.disabled = true;
+	ChangeButton.setAttribute("class", "myButtondisabled");
+	DeleteButton.disabled = true;
+	DeleteButton.setAttribute("class", "myButtondisabled");
 		check = 0;
 
 	if (table.rows.length>1) {
@@ -310,11 +323,18 @@ function DeleteRow(){
 
 	function myFunction(){
 	var rows = document.getElementById("custable").rows.length;
+	var ChangeButton = document.getElementById('ChangeButton');
+	var DeleteButton = document.getElementById('DeleteButton');
 	var i = 1;
-
+	ChangeButton.disabled = true;
+	ChangeButton.setAttribute("class", "myButtondisabled");
+	DeleteButton.disabled = true;
+	DeleteButton.setAttribute("class", "myButtondisabled");
 	for(i=1; i<rows; i++){
 
 document.getElementsByTagName('tr')[i].setAttribute("onclick", 'clickme(this)' );
+
+
 }
 }
 
@@ -337,11 +357,14 @@ function chunkArray(myArray, chunk_size){
 	var tablebase = [];
 
 function ShowData(){
-dataid = [];
-datafname = [];
-datalname = [];
-dataAge = [];
 tablebase = [];
+var ChangeButton = document.getElementById('ChangeButton');
+var DeleteButton = document.getElementById('DeleteButton');
+
+	ChangeButton.disabled = true;
+	ChangeButton.setAttribute("class", "myButtondisabled");
+	DeleteButton.disabled = true;
+	DeleteButton.setAttribute("class", "myButtondisabled");
 
 var tableid = document.getElementById('custable');
 var i =0;
